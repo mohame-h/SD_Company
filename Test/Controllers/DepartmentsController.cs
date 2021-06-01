@@ -57,6 +57,7 @@ namespace Test.Controllers
 
         // POST api/Department
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public ActionResult<Department> Post([FromBody] Department department)
@@ -82,6 +83,7 @@ namespace Test.Controllers
 
         // DELETE api/Departments/5
         [HttpDelete("{id}")]
+        [Authorize]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         public ActionResult Delete(int id)
@@ -105,6 +107,7 @@ namespace Test.Controllers
 
         // Put api/Departments/5
         [HttpPut("{id}")]
+        [Authorize]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

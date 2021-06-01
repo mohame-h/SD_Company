@@ -37,7 +37,7 @@ namespace Test.Controllers
             var user = AuthenticateUser(login);
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized("Please Recheck Your Inserted Data!");
             }
             var tokenStr = GenerateJSONWebToken(user);
             return Ok(new { TokenContext = tokenStr });
@@ -60,15 +60,14 @@ namespace Test.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("This is a custom secret key for auth"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            var claims = new[]
+            var claims = new List<Claim>()
             {
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
             var token = new JwtSecurityToken(
-                issuer: _config["BlaBla.com"],
-                audience: _config["BlaBla.com"],
+                issuer: "https://localhost:44392",
+                audience: "https://localhost:44392",
                 claims,
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: credentials
@@ -83,7 +82,7 @@ namespace Test.Controllers
         [Route("BlaBla")]
         public IActionResult blabla()
         {
-            return Ok("Blaaaaaaaaaaaaa");
+            return Ok("BlaBlaBlaBlaaaaaaaaaaaaa");
         }
 
     }
