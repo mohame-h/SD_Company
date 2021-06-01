@@ -67,8 +67,8 @@ namespace Test.Controllers
             };
 
             var token = new JwtSecurityToken(
-                issuer: _config["Jwt:Issuer"],
-                audience: _config["Jwt:Issuer"],
+                issuer: _config["BlaBla.com"],
+                audience: _config["BlaBla.com"],
                 claims,
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: credentials
