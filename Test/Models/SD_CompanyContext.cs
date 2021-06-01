@@ -21,6 +21,7 @@ namespace Test.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<WorksOn> WorksOns { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -65,6 +66,8 @@ namespace Test.Models
 
                 entity.Property(e => e.Job).IsUnicode(false);
             });
+
+            modelBuilder.Entity<Login>().HasKey(k => k.Email);
 
             OnModelCreatingPartial(modelBuilder);
         }
